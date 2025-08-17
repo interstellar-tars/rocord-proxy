@@ -1,0 +1,19 @@
+name = "roblox-discord-proxy"
+main = "worker.js"
+compatibility_date = "2024-11-21"
+
+[[kv_namespaces]]
+binding = "PROXY_KV"
+id = "<your_kv_id>"   # set after `wrangler kv:namespace create PROXY_KV`
+
+[[durable_objects.bindings]]
+name = "LIMITER"
+class_name = "LIMITER"
+
+[vars]
+MODE = "closed"            # "closed" (admin only) or "selfserve"
+ALLOWED_ORIGINS = "*"      # in prod, set to your domains
+# TURNSTILE_SECRET is optional for self-serve: wrangler secret put TURNSTILE_SECRET
+
+# Secrets:
+# - ADMIN_TOKEN: wrangler secret put ADMIN_TOKEN
